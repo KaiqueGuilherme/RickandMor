@@ -1,0 +1,14 @@
+    .container {
+        top: 20vh;
+        position: relative;
+    }
+
+    .btn {
+    background-color: var(--rick-bg-color-tree);
+    color: var(--rick-bg-color-one);
+    }
+    
+    .btn:hover {
+    background-color: var(--rick-bg-color-one);
+    color: var( --primary-bg-color);
+    }

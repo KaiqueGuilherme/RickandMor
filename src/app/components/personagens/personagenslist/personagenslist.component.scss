@@ -1,0 +1,118 @@
+.row {
+    margin: 0;
+    padding: 0;
+    align-items: start;
+}
+
+.banner-character {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.banner--fade {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.563), rgb(11, 11, 11));
+}
+
+.state p{
+    width: 100px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.375);
+}
+
+.infomations {
+    width: 50% !important;
+    height: 100% !important;
+    padding: 0;
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+
+.info {
+    display: flex !important;
+    align-items: center;
+    color: white;
+    gap: 0px;
+    flex-direction: column;
+}
+.info-character h4{
+    display: flex !important;
+    font-size: 30px;
+    align-items: start;
+    color: white;
+    gap: 5px;
+    flex-direction: column;
+}
+.info-character p{
+    font-size: 20px;
+}
+
+.item-position {
+    z-index: -1;
+}
+
+.item-character {
+    width: 25px;
+
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secundary-bg-color);
+}
+
+
+.container-charater{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 50px;
+}
+
+
+
+.card{
+background-color: transparent;
+border-color: 1px solid var(--rick-bg-color-for) !important;
+}
+
+.form-control{
+    border: none;
+    padding: 0 25px;
+    color: white;
+    border-radius: 35px !important; 
+    height: 55px;
+    background-color: var(--secundary-bg-color);
+}
+.form-control::placeholder {
+    color: white;
+}
+
+.carousel {
+    width: 100%;
+  }
+  
+  .slide img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card img{
+    border-radius: 15px;
+    border: 2px solid var(--rick-bg-color-for) !important ;
+    }

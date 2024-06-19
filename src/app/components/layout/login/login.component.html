@@ -1,0 +1,26 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <br>
+                    <h3>Rick and Morty</h3>
+                    <br>
+                    <mdb-form-control>
+                        <input mdbInput type="text" id="form1" class="form-control"  (keyup.enter)="login()" [(ngModel)]="username"/>
+                        <label mdbLabel class="form-label" for="form1">Usuario</label>
+                    </mdb-form-control>
+                    <br>
+                    <mdb-form-control>
+                        <input mdbInput type="password" id="form1" class="form-control" (keyup.enter)="login()" [(ngModel)]="password" />
+                        <label mdbLabel class="form-label" for="form1">Senha</label>
+                    </mdb-form-control>
+                    <br>
+                    <button type="button" class="btn" mdbRipple (click)="login()">Logar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

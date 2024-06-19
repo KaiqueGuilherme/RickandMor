@@ -1,0 +1,22 @@
+
+ <div class="row justify-content-center">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+           
+            @for (slide of slides; track slide.image) {
+        
+            <div ngxSlickItem class="slide">
+            <a (click)="selectCharacter(slide)">
+               <div class="card d-flex align-items-center" >
+                <div class="card-body">
+                    <img src="{{slide.image}}" alt="">
+                </div>
+                <p>{{slide.name}}</p>
+               </div>
+            </a>   
+            </div>
+            }
+        </ngx-slick-carousel>
+    </div>
+</div> 

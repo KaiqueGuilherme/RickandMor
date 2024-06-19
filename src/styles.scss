@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@fortawesome/fontawesome-free/css/all.css';
+@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+:root{
+--primary-bg-color: #151515; 
+--secundary-bg-color: #605e5e; 
+--rick-bg-color-one: #44281d;
+--rick-bg-color-two: #e4a788;
+--rick-bg-color-tree: #f0e14a;
+--rick-bg-color-for: #97ce4c;
+--rick-bg-color-five: #e89ac7;
+}
+
+body{
+box-sizing: border-box !important;
+margin: 0 !important;
+padding: 0 !important;
+background-color: #151515;
+}
