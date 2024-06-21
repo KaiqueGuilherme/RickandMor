@@ -1,29 +1,19 @@
-<div class="container-fluid top full-height item-position position-relative">
-    <div class="row h-100">
-        <!-- Coluna 1 -->
-        <div class="col-lg-6 infomations p-0 d-flex align-items-center">
-            <div class="banner-character position-relative">
-                <div class="banner--fade position-absolute top-0 start-0 w-100 h-100"></div>
-                <app-personagens-details [selectedCharacter]="selectedCharacter"></app-personagens-details>
-            </div>
-        </div>
-<!-- Coluna 2 -->
-        <div class="col-lg-6 infomations d-flex justify-content-center align-items-center p-0">
+<div class="container mt-5">
+        <div class="d-flex justify-content-center align-items-center p-0 ">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-10 col-sm-12 text-center">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg"
-                            alt="Rick and Morty" class="img-fluid mb-4" style="max-width: 80%;">
+                            alt="Rick and Morty" class="img-fluid mb-4" style="max-width: 50%;">
                         <div class="input-group">
-                           <input type="text" class="form-control rounded" placeholder="Pesquisar personagem"
-                        aria-label="Search" aria-describedby="search-addon" [(ngModel)]="searchTerm"
-                        (input)="search()">
+                            <input type="text" class="form-control rounded" placeholder="Pesquisar personagem"
+                                aria-label="Search" aria-describedby="search-addon" [(ngModel)]="searchTerm"
+                                (input)="search()">
                         </div>
                     </div>
                 </div>
-                <br>
                 <div class="row justify-content-center">
-                    <div class="col-lg-10 col-md-8 col-sm-12">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
                         <ngx-slick-carousel *ngIf="slides.length > 0" class="carousel" [config]="slideConfig">
                             <div *ngFor="let slide of slides" ngxSlickItem class="slide">
                                 <div (click)="selectCharacter(slide)">
@@ -49,10 +39,8 @@
                                 </ul>
                             </nav>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

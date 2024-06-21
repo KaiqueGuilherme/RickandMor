@@ -1,12 +1,3 @@
-/* Estilos gerais */
-.full-height {
-    height: 100vh;
-}
-
-.item-position {
-    position: relative;
-}
-
 .banner-character {
     width: 100%;
     height: 100%;
@@ -19,22 +10,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-
-
-.items {
+.banner--fade {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.563), rgb(11, 11, 11));
     width: 100%;
-    height: 40px;
+    height: 100%;
 }
-
-.items p{
-    width: 20%;
-    height: 40px;
-    border-radius: 5px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.375);
-}
-
-
 
 .infomations {
     padding: 0;
@@ -42,23 +22,55 @@
 
 .info-character {
     text-align: center;
-}
 
-.info-character h4 {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 10px;
-}
+    h4 {
+        font-size: 24px;
+        color: white;
+        margin-bottom: 10px;
+    }
 
-.info-character p {
-    font-size: 18px;
-    color: var(--secundary-bg-color);
+    p {
+        font-size: 18px;
+        color: var(--secundary-bg-color);
+    }
 }
 
 .info-character-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 15px;
     font-size: 15px;
     color: var(--primary-color);
+
+    img {
+        width: 25px;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.items {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.375);
+    border-radius: 5px;
+    color: white;
+
+    p {
+        width: 20%;
+        height: 100%;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.375);
+    }
 }
 
 .items-info {
@@ -72,10 +84,9 @@
     border-radius: 35px;
     height: 55px;
     background-color: rgba(255, 255, 255, 0.1);
-}
-
-.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
 }
 
 .carousel {
@@ -87,36 +98,27 @@
     height: auto;
 }
 
-.card img {
-    border-radius: 15px;
-    border: 3px solid var(--rick-bg-color-for);
+.card {
+    cursor: pointer;
+    background-color: transparent;
+
+    img {
+        border-radius: 15px;
+        border: 3px solid var(--rick-bg-color-for);
+    }
+
+    h3 {
+        color: white;
+        font-size: 15px;
+    }
 }
 
-.card  {
-background-color: transparent;
-}
-.card  h3 {
-    color: white;
-    font-size: 15px;
-}
-
-.col-lg-10 p{
-color: white;
-text-align: center;
-}
-/* Responsividade */
 @media (max-width: 767px) {
     .banner-character {
         height: 300px; /* Ajuste de altura para telas menores */
     }
 
-    .items {
-        width: 100%;
-        height: 40px;
-    }
-
-
-    .items p{
+    .items p {
         margin: 0 15px;
         width: 40%;
         height: 40px;
@@ -125,10 +127,12 @@ text-align: center;
         background-color: rgba(0, 0, 0, 0.375);
     }
 
-    .items p, .info-character h4, .info-character p {
-        
+    .info-character h4,
+    .info-character p,
+    .items p {
         font-size: 16px;
     }
+
     .form-control {
         padding: 0 15px;
         height: 45px;
@@ -139,8 +143,8 @@ text-align: center;
     .info-character h4 {
         font-size: 28px;
     }
+
     .info-character p {
         font-size: 20px;
     }
 }
-
