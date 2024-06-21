@@ -9,10 +9,22 @@ export class CharacterServiceService {
   http = inject(HttpClient);
   constructor() { }
   
-  apiUrl = 'https://rickandmortyapi.com/api/character';
+  api = 'https://rickandmortyapi.com/api/character';
   
   getCharacters(page: number): Observable<any> {
-    const url = `${this.apiUrl}?page=${page}`;
-    return this.http.get(url);
+    const url = `${this.api}/?page=${page}`;
+    return this.http.get<any>(url);
   }
+
+  getCharactersSearch(character: string): Observable<any> {
+    const url = `${this.api}/?name=${character}`;
+    return this.http.get<any>(url);
+  }
+
+  getCharacterByid(character: number): Observable<any> {
+    const url = `${this.api}/?name=${character}`;
+    return this.http.get<any>(url);
+  }
+
+
 }

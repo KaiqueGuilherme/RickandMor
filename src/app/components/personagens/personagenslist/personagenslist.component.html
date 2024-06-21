@@ -1,81 +1,57 @@
-
-<div class="position-absolute top-0 start-0 h-100 w-100 full-height item-position">
-    <div class="row h-100 ">
-        <div class="col-lg-2 infomations d-flex justify-content-center align-items-center p-0 position-relative img-container">
-            <div class="banner-character d-block position-relative "
-            [style.background-image]="'url(' + (character?.image || '') + ')'">
-                <div class="banner--fade position-absolute top-0 start-0 w-100 h-100">
-                </div>
-                <div class="state position-absolute top-0 w-100 p-5 d-flex align-items-center">
-                    <div>
-                        <svg height="30" width="30" xmlns="http://www.w3.org/2000/svg">
-                            <circle r="7" cx="15" cy="15" fill="rgb(56, 255, 42)" />
-                        </svg>
-                    </div>
-                    <p class="ms-2 mb-0">{{ character?.status }}</p>
-                </div>
-                
-                <div class="position-absolute bottom-0 w-100 p-5 ">
-                    <div class="info-character ">
-                        <h4>{{character?.name}}</h4>
-                        <p>{{character?.species}}</p>
-                        <br>
-                    </div>
-                    <div class="row start-0">
-                        <div class="col-md-6  col-lg-3 ">
-                            <div class="info">
-                                <img class="item-character" src="../../../../assets/icons/location.png" alt=""
-                                    draggable="false">
-                                <br>
-                                <h4>{{character?.location?.name?.substr(0, 5)}}</h4>
-                                <p>em</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6  col-lg-3 ">
-                            <div class="info">
-                                <img class="item-character" src="../../../../assets/icons/planet.png" alt=""
-                                    draggable="false">
-                                <br>
-                                <h4>{{character?.origin.name?.substr(0, 5)}}</h4>
-                                <p>{{ character.origin.name?.length > 5 ? character.origin.name?.substr(5, 50) : character.origin.name }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6  col-lg-3 ">
-                            <div class="info">
-                                <img class="item-character" src="../../../../assets/icons/episodes.png" alt=""
-                                    draggable="false">
-                                <br>
-                                <h4>{{ character.episode?.length }}</h4>
-                                <p>Episodios</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6  col-lg-3">
-                            <div class="info">
-                                <img class="item-character" src="../../../../assets/icons/gender.png" alt=""
-                                    draggable="false">
-                                <br>
-                                <h4>{{character.gender}}</h4>
-                                <p>Gênero</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid top full-height item-position position-relative">
+    <div class="row h-100">
+        <!-- Coluna 1 -->
+        <div class="col-lg-6 infomations p-0 d-flex align-items-center">
+            <div class="banner-character position-relative">
+                <div class="banner--fade position-absolute top-0 start-0 w-100 h-100"></div>
+                <app-personagens-details [selectedCharacter]="selectedCharacter"></app-personagens-details>
             </div>
         </div>
-        <div class="infomations col-lg-2 d-flex justify-content-center align-items-center p-0">
+<!-- Coluna 2 -->
+        <div class="col-lg-6 infomations d-flex justify-content-center align-items-center p-0">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10 col-sm-12">
+                    <div class="col-lg-8 col-md-10 col-sm-12 text-center">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg"
-                            alt="Rick and Morty" class="img-fluid mb-4" style="max-width: 80%;" />
+                            alt="Rick and Morty" class="img-fluid mb-4" style="max-width: 80%;">
                         <div class="input-group">
-                            <input type="search" class="form-control rounded" placeholder="Pesquisar personagem"
-                                aria-label="Search" aria-describedby="search-addon">
+                           <input type="text" class="form-control rounded" placeholder="Pesquisar personagem"
+                        aria-label="Search" aria-describedby="search-addon" [(ngModel)]="searchTerm"
+                        (input)="search()">
                         </div>
-                        <br>
                     </div>
                 </div>
-               <app-carrousel></app-carrousel>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-md-8 col-sm-12">
+                        <ngx-slick-carousel *ngIf="slides.length > 0" class="carousel" [config]="slideConfig">
+                            <div *ngFor="let slide of slides" ngxSlickItem class="slide">
+                                <div (click)="selectCharacter(slide)">
+                                    <div class="card align-items-center">
+                                        <div class="card-body">
+                                            <img [src]="slide.image" alt="" draggable="false">
+                                        </div>
+                                        <h3>{{ slide.name }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </ngx-slick-carousel>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination pagination-md">
+                                    <li class="page-item" [class.active]="currentPage === page"
+                                        *ngFor="let page of getVisiblePages()">
+                                        <a class="page-link" href="javascript:void(0)" (click)="changePage(page)">{{
+                                            page
+                                            }}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

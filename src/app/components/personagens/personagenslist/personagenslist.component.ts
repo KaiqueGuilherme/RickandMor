@@ -1,26 +1,132 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Output, inject } from '@angular/core';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
-import { CarrouselComponent } from '../carrousel/carrousel.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CharacterServiceService } from '../../../service/Character/character-service.service';
+import { Personagens } from '../../../models/personagem';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { PersonagensDetailsComponent } from '../personagens-details/personagens-details.component';
 
 @Component({
   selector: 'app-personagenslist',
   standalone: true,
-  imports: [MdbCarouselModule, CarrouselComponent],
+  imports: [CommonModule, MdbCarouselModule, SlickCarouselModule, FormsModule, PersonagensDetailsComponent],
   templateUrl: './personagenslist.component.html',
   styleUrl: './personagenslist.component.scss'
 })
 export class PersonagenslistComponent implements OnInit {
+    slides: Personagens[] = [];
+    searchTerm: string = '';
+    currentPage: number = 1;
+    totalPages: number = 1;
+    totalPagesArray: number[] = [];
+    visiblePages: number = 3;
+    @Output() selectedCharacter: Personagens | undefined;
   
-  @Input() character: any; 
-  
-  constructor() {
+    slideConfig = {
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      autoplay: false,
+      dots: false,
+      pauseOnHover: false,
+      arrows: false,
+      infinite: false,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            arrows: false,
+            infinite: false,
+            slidesToShow: 3,
+            slidesToScroll: 3
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
     
-    console.log(this.character)
-   }
-   
-   ngOnInit(): void {
-    
-  }
+
+    characterService = inject(CharacterServiceService);
+
+    constructor() {}
   
+    ngOnInit(): void {
+      this.loadCharacters(this.currentPage);
+    }
   
+    loadCharacters(page: number): void {
+      this.characterService.getCharacters(page).subscribe({
+        next: (characters: any) => {
+          console.log(characters);
+          this.slides = characters.results;
+          this.totalPages = characters.info.pages;
+          this.totalPagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+          this.selectedCharacter = this.slides[0];
+        },
+        error: (error: any) => {
+          console.error('Error loading characters: ', error);
+        }
+      });
+    }
+  
+    selectCharacter(character: any) {
+      this.selectedCharacter = character;
+    }
+  
+    changePage(page: number): void {
+      console.log(page);
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+        this.loadCharacters(page);
+      }
+    }
+  
+    getVisiblePages(): number[] {
+      const visiblePages: number[] = [];
+      const totalPages = this.totalPages;
+      const currentPage = this.currentPage;
+      for (let i = currentPage - 1; i <= currentPage + 1 && i <= totalPages; i++) {
+        if (i >= 1) {
+          visiblePages.push(i);
+        }
+      }
+      return visiblePages;
+    }
+
+    getStatusColor(status: string | undefined): string {
+      switch (status) {
+        case 'Alive':
+          return 'rgb(56, 255, 42)';
+        case 'Dead':
+          return 'rgb(255, 0, 0)';
+        default:
+          return 'rgb(128, 128, 128)';
+      }
+    }
+
+    search(): void {
+      if (this.searchTerm.trim() !== '') {
+        this.characterService.getCharactersSearch(this.searchTerm).subscribe({
+          next: (characters: any) => {
+            console.log(characters);
+            this.slides = characters.results;
+            this.selectedCharacter = this.slides[0];
+          },
+          error: (error: any) => {
+            console.error('Error loading characters: ', error);
+          }
+        });
+      } else {
+        this.loadCharacters;
+      }
+    }
 }
+  

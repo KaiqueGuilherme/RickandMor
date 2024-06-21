@@ -1,0 +1,68 @@
+
+<img class="position-absolute w-100" src="{{selectedCharacter?.image}}" alt="" srcset="">
+<div class="state position-absolute top-0 w-100 p-3">
+    <div class="items d-flex">
+        <p class="d-flex align-items-center">
+            <svg height="30" width="50" xmlns="http://www.w3.org/2000/svg">
+                <circle r="7" cx="20" cy="15" [attr.fill]="getStatusColor(selectedCharacter?.status)" />
+            </svg>
+            {{selectedCharacter?.status}}
+        </p>
+    </div>
+</div>
+<div class="position-absolute bottom-0 w-100 p-3">
+    <div class="container info-character text-start">
+        <h4>
+            {{selectedCharacter?.name}}
+        </h4>
+        <p>
+            {{selectedCharacter?.species}}
+        </p>
+    </div>
+    <br>
+    <div class="row container nowrap">
+        <div class="col-lg-2">
+            <div class="container info-character-items d-flex flex-column align-items-center">
+                <img src="../../../../assets/icons/location.png" alt="" width="25">
+                <p>
+                    {{selectedCharacter?.location?.name}}
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-2 align-items-center">
+            <div class="container info-character-items d-flex flex-column align-items-center">
+                <img src="../../../../assets/icons/planet.png" alt="" width="35">
+                <div class="text-center">
+                    <p class="mb-0"
+                    *ngIf="selectedCharacter && selectedCharacter.origin && selectedCharacter.origin.name">
+                    {{ selectedCharacter.origin.name.split(' ')[0] }}
+                </p>
+                <p class="items-info"
+                    *ngIf="selectedCharacter && selectedCharacter.origin && selectedCharacter.origin.name">
+                    {{
+                    selectedCharacter.origin.name.substring(selectedCharacter.origin.name.indexOf('
+                    ') + 1) }}
+                </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 align-items-center">
+            <div class="container info-character-items d-flex flex-column align-items-center">
+                <img src="../../../../assets/icons/episodes.png" alt="" width="35">
+                <div class="text-center">
+                    <p class="mb-0">{{selectedCharacter?.episode?.length}}</p>
+                    <p class="items-info">Episode</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 align-items-center">
+            <div class="container info-character-items d-flex flex-column align-items-center">
+                <img src="../../../../assets/icons/gender.png" alt="" width="35">
+                <div class="text-center">
+                    <p class="mb-0">{{selectedCharacter?.gender}}</p>
+                    <p class="items-info">Gênero</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>

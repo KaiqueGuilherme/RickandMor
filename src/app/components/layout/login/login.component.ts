@@ -17,30 +17,20 @@ export class LoginComponent {
   username!: string;
   password!: string;
 
-  constructor(private LoginService: LoginService) { }
-
-  router = inject(Router);
+  constructor(private loginService: LoginService, private router: Router) { }
 
   login() {
-    this.LoginService.login(this.username, this.password).subscribe({
+    this.loginService.login(this.username, this.password).subscribe({
       next: response => {
         if (response.success) {
-          this.router.navigate(['/dashboard/personagens']);
+         this.router.navigate(['/dashboard/personagens']);
           Swal.fire({
             icon: 'success',
-            title: 'Login Bem sucedido',
+            title: 'aq',
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#3085d6'
           });
-        } else {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Dados incorretos',
-            text: 'Precisamos dos seus dados de autenticação para concluir',
-            confirmButtonText: 'Continuar',
-            confirmButtonColor: '#3085d6'
-          });
-        }
+        } 
       },
       error: err =>{
         console.log(err);
