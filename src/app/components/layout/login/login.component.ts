@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import Swal from 'sweetalert2';
-import { LoginService } from '../../../service/login/login.service';
+import Swal from 'sweetalert2'; // Importando SweetAlert2 para exibição de mensagens
+import { LoginService } from '../../../service/login/login.service'; 
 
 
 @Component({
@@ -14,33 +14,54 @@ import { LoginService } from '../../../service/login/login.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  username!: string;
-  password!: string;
+ // Propriedades para armazenar o nome de usuário e senha inseridos pelo usuário
+ username!: string;
+ password!: string;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+ // Injeção do serviço de login e do roteador
+ loginService = inject(LoginService);
+ private router = inject(Router);
 
-  login() {
-    this.loginService.login(this.username, this.password).subscribe({
-      next: response => {
-        if (response.success) {
+ constructor() { }
+
+ // Método para realizar o login
+ login() {
+   // Chamada ao método de login do serviço
+   this.loginService.login(this.username, this.password).subscribe({
+     next: response => {
+       // Callback para sucesso na resposta
+       if (response.success) {
+         // Redireciona para a página principal após o login bem-sucedido
          this.router.navigate(['/dashboard/personagens']);
-          Swal.fire({
-            icon: 'success',
-            title: 'logado com sucesso',
-            confirmButtonText: 'Continuar',
-            confirmButtonColor: '#3085d6'
-          });
-        } 
-      },
-      error: err =>{
-        console.log(err);
-          Swal.fire({
-            title: 'Error!',
-            text: 'Erro ao Buscar o Lead!',
-            icon: 'error',
-            confirmButtonText: 'Continuar'
-          });
-      }
-      });
-    }
+         // Exibe um alerta de sucesso utilizando SweetAlert2
+         Swal.fire({
+           icon: 'success',
+           title: 'Logado com sucesso',
+           confirmButtonText: 'Continuar',
+           confirmButtonColor: '#3085d6'
+         });
+       } else {
+         // Exibe um alerta de aviso caso as credenciais sejam inválidas
+         Swal.fire({
+           icon: 'warning',
+           title: 'Informações inválidas',
+           text: 'Suas credenciais estão inválidas',
+           confirmButtonText: 'Continuar',
+           confirmButtonColor: '#3085d6'
+         });
+       }
+     },
+     error: err => {
+       // Callback para tratamento de erro na requisição de login
+       console.error('Erro ao realizar login:', err); // Loga o erro no console para debug
+       // Exibe um alerta de erro genérico utilizando SweetAlert2
+       Swal.fire({
+         title: 'Erro!',
+         text: 'Erro ao realizar login',
+         icon: 'error',
+         confirmButtonText: 'Continuar'
+       });
+     }
+   });
+ }
 }

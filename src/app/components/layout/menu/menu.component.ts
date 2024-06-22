@@ -14,34 +14,41 @@ import Swal from 'sweetalert2';
 })
 export class MenuComponent {
 
+  // Injeção do serviço de roteamento
   router = inject(Router);
+  // Injeção do serviço de login
+  LoginService = inject(LoginService);
 
-  constructor(private LoginService: LoginService) { }
-
-  logout() {
-    console.log('bateu aqui')
-    this.LoginService.logout().subscribe({
-      next: response => {
+  constructor() { }
+ // Método para logout do usuário
+ logout() {
+  console.log('Chamou o método logout'); // Apenas para debug, pode ser removido
+  this.LoginService.logout().subscribe({
+    next: response => {
       if (response.success) {
-       this.router.navigate(['login']);
+        // Redireciona para a página de login se o logout for bem-sucedido
+        this.router.navigate(['login']);
       } else {
+        // Exibe um alerta de erro se o logout não for bem-sucedido
         Swal.fire({
           icon: 'warning',
           title: 'Erro ao Deslogar',
-          text: 'Entre em contato com o dev',
+          text: 'Entre em contato com o desenvolvedor',
           confirmButtonText: 'Continuar',
           confirmButtonColor: '#3085d6'
         });
       }
     },
-    error: err =>{
-      console.log(err);
-        Swal.fire({
-          title: 'Error!',
-          text: 'Erro ao Deslogar',
-          icon: 'error',
-          confirmButtonText: 'Continuar'
-        });
-    }});
-  }
+    error: err => {
+      console.error('Erro ao deslogar:', err); // Log do erro no console para debug
+      // Exibe um alerta de erro genérico se ocorrer um erro durante o logout
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Erro ao Deslogar',
+        icon: 'error',
+        confirmButtonText: 'Continuar'
+      });
+    }
+  });
+}
 }

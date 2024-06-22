@@ -6,25 +6,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CharacterServiceService {
+
+  // Injeta o HTTP Client
   http = inject(HttpClient);
   constructor() { }
-  
+
+  // URL da API 
   api = 'https://rickandmortyapi.com/api/character';
-  
+
+  // Buscando todos os personagens: "page" é o número da página que vamos buscar
   getCharacters(page: number): Observable<any> {
-    const url = `${this.api}/?page=${page}`;
-    return this.http.get<any>(url);
+    const url = `${this.api}/?page=${page}`; // Formatando o número da página na URL da API
+    return this.http.get<any>(url); // Retornando dados em formato de array
   }
 
+  // Buscando personagem por nome: "character" é o nome do personagem que vamos buscar
   getCharactersSearch(character: string): Observable<any> {
-    const url = `${this.api}/?name=${character}`;
-    return this.http.get<any>(url);
+    const url = `${this.api}/?name=${character}`; // Formatando o nome do personagem na URL da API
+    return this.http.get<any>(url); // Retornando dados
   }
 
-  getCharacterByid(character: number): Observable<any> {
-    const url = `${this.api}/${character}`;
-    return this.http.get<any>(url);
+  // Buscando personagem por ID: "id" é o valor que vamos buscar
+  getCharacterById(id: number): Observable<any> {
+    const url = `${this.api}/${id}`; // Formatando o ID do personagem na URL da API
+    return this.http.get<any>(url); // Retornando dados
   }
+
 
 
 }
