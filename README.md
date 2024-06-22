@@ -32,8 +32,8 @@ CharacterService: Gerencia a lógica para buscar e fornecer dados dos personagen
 
 ### Modelos:
 
-### User: Define a estrutura dos dados do usuário.
-### Character: Define a estrutura dos dados de um personagem.
+User: Define a estrutura dos dados do usuário.
+Character: Define a estrutura dos dados de um personagem.
 
 
 
