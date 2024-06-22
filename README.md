@@ -1,27 +1,58 @@
-# RickandMor
+# Visão Geral
+O projeto é uma aplicação web desenvolvida em Angular, que permite aos usuários realizar operações de login, visualizar uma lista de personagens e detalhes de cada personagem utilizando dados da API pública do Rick and Morty.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+# Funcionalidades Principais
 
-## Development server
+## Login de Usuário:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Utiliza um serviço de login (LoginService) para autenticar usuários através de uma API.
+Exibe mensagens de sucesso ou erro utilizando SweetAlert2 após o login.
+Lista de Personagens:
 
-## Code scaffolding
+Utiliza um serviço de personagens (CharacterService) para buscar e exibir uma lista de personagens da API do Rick and Morty.
+Implementa paginação na lista de personagens.
+Detalhes de Personagem:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Permite aos usuários visualizar detalhes específicos de cada personagem clicando em seus respectivos itens na lista.
 
-## Build
+### Fluxo de Dados
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Componentes:
 
-## Running unit tests
+LoginComponent: Responsável pela interface de login do usuário.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+CharacterListComponent: Exibe a lista de personagens e implementa a funcionalidade de pesquisa.
 
-## Running end-to-end tests
+CharacterDetailComponent: Mostra os detalhes de um personagem específico selecionado pelo usuário.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Serviços:
 
-## Further help
+LoginService: Gerencia a lógica de autenticação de usuários.
+CharacterService: Gerencia a lógica para buscar e fornecer dados dos personagens da API.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Modelos:
+
+# User: Define a estrutura dos dados do usuário.
+# Character: Define a estrutura dos dados de um personagem.
+
+
+
+# Clone o repositório do projeto:
+
+git clone https://github.com/seu-usuario/seu-projeto.git
+Instale as dependências do projeto utilizando npm ou yarn:
+
+
+# Inicie o servidor de desenvolvimento:
+
+ng serve
+Abra o navegador e navegue para http://localhost:4200 para visualizar a aplicação em execução.
+
+# Contribuição
+Para contribuir com o projeto, siga estas diretrizes:
+
+Crie uma nova branch a partir do branch develop.
+Implemente suas alterações ou correções.
+Abra um pull request descrevendo suas alterações detalhadamente.
+# Contato
+Para dúvidas ou mais informações, entre em contato com kaiqueguilhermepereiramiranda@gmail.com.
