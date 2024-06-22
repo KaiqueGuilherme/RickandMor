@@ -1,132 +1,39 @@
-.full-height {
-    height: 100vh;
+.top{
+margin-top: 50px;
 }
 
-.item-position {
-    position: relative;
+img{
+width: 100%;
+border: 3px solid var(--rick-bg-color-for);
 }
 
-.banner-character {
+.card{
+    background-color: transparent;
     width: 100%;
-    height: 100%;
-}
-
-.banner--fade {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.563), rgb(11, 11, 11));
-    width: 100%;
-    height: 100%;
-}
-
-.state {
-    width: 100%;
-}
-
-.items {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.375);
-    border-radius: 5px;
-    color: white;
-}
-
-.items p {
-    margin: 0;
-}
-
-.info-character {
-    text-align: center;
-}
-
-.info-character h4 {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.info-character p {
-    font-size: 18px;
-    color: var(--secundary-bg-color);
-}
-
-.info-character-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.form-control {
-    border: none;
-    padding: 0 25px;
-    color: white;
-    border-radius: 35px;
-    height: 55px;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.carousel {
-    width: 100%;
-}
-
-.slide img {
-    max-width: 100%;
-    height: auto;
-}
-
-.card img {
-    border-radius: 15px;
     border: 3px solid var(--rick-bg-color-for);
 }
 
-.card {
-    background-color: transparent;
+h1{
+    font-size: larger;
+    color: var(--primary-color);
+}
+hr{
+    color: var(--rick-bg-color-for);
 }
 
-@media (max-width: 767px) {
-    .banner-character {
-        height: 300px; /* Ajuste de altura para telas menores */
-    }
-
-    .items {
-        width: 100%;
-        height: 40px;
-    }
-
-    .items p {
-        width: 40%;
-    }
-
-    .info-character h4,
-    .info-character p {
-        font-size: 16px;
-    }
-
-    .form-control {
-        padding: 0 15px;
-        height: 45px;
-    }
+p{
+color: var(--rick-bg-color-for);
 }
 
-.itens{
-    background: black !important;
-
-    padding: 15px;
-    width: 100% !important;
-    height: 100% !important;
+span{
+    color: var(--primary-color);
 }
 
-@media (min-width: 768px) {
-    .info-character h4 {
-        font-size: 28px;
-    }
+.btn {
+    background-color: var(--rick-bg-color-for);
+}
 
-    .info-character p {
-        font-size: 20px;
-    }
+.btn:hover {
+    color: var(--primary-color);
+    background-color: var(--rick-bg-color-one);
 }

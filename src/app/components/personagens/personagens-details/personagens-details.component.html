@@ -1,0 +1,27 @@
+<div class="container-fluid mt-0 top">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+      <div class="card bg-dark text-white mb-4 p-4">
+        <h2 class="text-center">Informações do Personagem</h2>
+      </div>
+      <div class="card bg-dark text-white p-4">
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            <img [src]="selectedCharacter?.image" alt="" class="img-fluid rounded" draggable="false">
+          </div>
+          <div class="col-lg-6 col-md-12 mt-4 mt-lg-0">
+            <h2 class="mb-0">{{ selectedCharacter?.name }}</h2>
+            <p class="mb-0">{{ selectedCharacter?.species }}</p>
+            <hr class="my-2">
+            <p class="mb-1">Gênero: <span>{{ selectedCharacter?.gender }}</span></p>
+            <p class="mb-1">Origem: <span>{{ selectedCharacter?.origin?.name }}</span></p>
+            <p class="mb-1">Última Localização: <span>{{ selectedCharacter?.location?.name }}</span></p>
+            <p class="mb-1">Episódios Gravados: <span>{{ selectedCharacter?.episode?.length }}</span></p>
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-primary btn-back w-20" (click)="exit()">Voltar</button>
+      </div>
+    </div>
+  </div>
+</div>

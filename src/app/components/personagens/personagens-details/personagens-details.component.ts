@@ -1,6 +1,8 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, inject } from '@angular/core';
 import { Personagens } from '../../../models/personagem';
 import { CommonModule } from '@angular/common';
+import { CharacterServiceService } from '../../../service/Character/character-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-personagens-details',
@@ -10,16 +12,31 @@ import { CommonModule } from '@angular/common';
   styleUrl: './personagens-details.component.scss'
 })
 export class PersonagensDetailsComponent {
-  @Input() selectedCharacter: Personagens | undefined;
+   selectedCharacter: Personagens | undefined;
 
-  getStatusColor(status: string | undefined): string {
-    switch (status) {
-      case 'Alive':
-        return 'rgb(56, 255, 42)';
-      case 'Dead':
-        return 'rgb(255, 0, 0)';
-      default:
-        return 'rgb(128, 128, 128)';
+   private route = inject(ActivatedRoute);
+   private router = inject(Router);
+   characterService = inject(CharacterServiceService);
+
+  constructor(){
+    const id = this.route.snapshot.params['idPersonagem'];
+    if (id > 0) {
+      this.findByid(id);
+    } else {
+      this.router.navigate([`/dashboard/personagens`]);
     }
   }
+
+  findByid(id: number){
+    this.characterService.getCharacterByid(id).subscribe({
+      next:  character => {
+        this.selectedCharacter = character;
+      }
+    })
+  }
+
+  exit(){
+    this.router.navigate([`/dashboard/personagens`]);
+  }
+ 
 }

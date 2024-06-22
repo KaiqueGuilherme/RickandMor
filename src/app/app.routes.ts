@@ -14,5 +14,5 @@ export const routes: Routes = [
         {path: "personagens", component: PersonagenslistComponent},
         {path: "personagem/:idPersonagem", component: PersonagensDetailsComponent}
     ]},
-    { path: '**', redirectTo: 'login', pathMatch: 'full' },
+    { path: '**', redirectTo: 'dashboard/personagens', pathMatch: 'full' },
 ];

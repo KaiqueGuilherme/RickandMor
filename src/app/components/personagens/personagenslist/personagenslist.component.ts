@@ -23,37 +23,7 @@ export class PersonagenslistComponent implements OnInit {
   totalPages: number = 1;
   totalPagesArray: number[] = [];
   visiblePages: number = 3;
-
-  slideConfig = {
-    slidesToShow: 3,
-    slidesToScroll: 2,
-    autoplay: false,
-    dots: false,
-    pauseOnHover: false,
-    arrows: false,
-    infinite: false,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          arrows: false,
-          infinite: false,
-          slidesToShow: 3,
-          slidesToScroll: 3
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          infinite: false,
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
+  showNoResultsMessage: boolean = false;
 
   characterService = inject(CharacterServiceService);
   router = inject(Router);
@@ -67,7 +37,6 @@ export class PersonagenslistComponent implements OnInit {
   loadCharacters(page: number): void {
     this.characterService.getCharacters(page).subscribe({
       next: (characters: any) => {
-        console.log(characters);
         this.slides = characters.results;
         this.totalPages = characters.info.pages;
         this.totalPagesArray = Array.from({ length: this.totalPages }, (_, i) => i + 1);
@@ -80,14 +49,13 @@ export class PersonagenslistComponent implements OnInit {
 
   selectCharacter(character: any) {
     if (character !== null) {
-      this.router.navigate([`/dashboard/personagem//${character.id}`]);
+      this.router.navigate([`/dashboard/personagem/${character.id}`]);
     } else {
       console.log("erro");
     }
   }
 
   changePage(page: number): void {
-    console.log(page);
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.loadCharacters(page);
@@ -110,15 +78,16 @@ export class PersonagenslistComponent implements OnInit {
     if (this.searchTerm.trim() !== '') {
       this.characterService.getCharactersSearch(this.searchTerm).subscribe({
         next: (characters: any) => {
-          console.log(characters);
           this.slides = characters.results;
+
+          
         },
         error: (error: any) => {
           console.error('Error loading characters: ', error);
         }
       });
     } else {
-      this.loadCharacters(this.currentPage); // Fixed missing parameter
+     
     }
   }
 }

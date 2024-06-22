@@ -22,7 +22,7 @@ export class CharacterServiceService {
   }
 
   getCharacterByid(character: number): Observable<any> {
-    const url = `${this.api}/?name=${character}`;
+    const url = `${this.api}/${character}`;
     return this.http.get<any>(url);
   }
 

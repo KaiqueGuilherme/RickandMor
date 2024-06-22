@@ -1,20 +1,11 @@
-/* Estilo para o navbar */
+
 .navbar {
-    background-color: transparent !important; 
-    position: absolute;
-    z-index: 1000; 
+    background-color: var(--primary-bg-color); 
     height: 15%;
     box-shadow: none;
   }
   
- 
-  .container-fluid.full-height {
-    margin-top: 70px; 
-  }
-  
-  .item-position {
-    padding-top: 20px; 
-  }
-  
-  /* Estilos adicionais conforme o seu layout */
+.dropdown{
+border-radius: 0px !important;
+}
   
