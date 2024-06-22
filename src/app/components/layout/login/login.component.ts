@@ -26,7 +26,7 @@ export class LoginComponent {
          this.router.navigate(['/dashboard/personagens']);
           Swal.fire({
             icon: 'success',
-            title: 'aq',
+            title: 'logado com sucesso',
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#3085d6'
           });

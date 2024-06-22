@@ -23,12 +23,21 @@ export class LoginService {
     );
     }
 
+  getUser(): Observable<{ success: boolean, user: any | null }> {
+    return this.#userLogin.getUsers().pipe(
+    map(user => {
+
+        localStorage.setItem('user', JSON.stringify(user));
+        return { success: true, user };
+      })
+    );
+    }
+
   logout(): Observable<{ success: boolean  }> {
     localStorage.removeItem("user");
     this.isAuthenticated = false;
     return of({ success: true });
   }
-
   isLoggedIn(): boolean {
     return this.isAuthenticated || localStorage.getItem('user') !== null;
   }

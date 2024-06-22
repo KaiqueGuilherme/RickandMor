@@ -74,6 +74,17 @@ export class PersonagenslistComponent implements OnInit {
     return visiblePages;
   }
 
+  getStatusColor(status: string | undefined): string {
+    switch (status) {
+      case 'Alive':
+        return 'rgb(56, 255, 42)';
+      case 'Dead':
+        return 'rgb(255, 0, 0)';
+      default:
+        return 'rgb(128, 128, 128)';
+    }
+  }
+  
   search(): void {
     if (this.searchTerm.trim() !== '') {
       this.characterService.getCharactersSearch(this.searchTerm).subscribe({
@@ -90,4 +101,5 @@ export class PersonagenslistComponent implements OnInit {
      
     }
   }
+
 }

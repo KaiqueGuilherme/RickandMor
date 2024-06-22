@@ -1,0 +1,23 @@
+<div class="container-fluid mt-0 top">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+        <div class="card bg-dark text-white mb-4 p-4">
+          <h2 class="text-center">Meu Perfil</h2>
+        </div>
+        <div class="card bg-dark text-white p-4">
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <img [src]="profile?.url" alt="" class="img-fluid rounded" draggable="false">
+            </div>
+            <div class="col-lg-6 col-md-12 mt-4 mt-lg-0">
+              <p class="mb-1">Nome: <span>{{profile?.name}}</span></p>
+              <p class="mb-1">Senha: <span>{{profile?.password}}</span></p>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-primary btn-back w-20" (click)="exit()">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

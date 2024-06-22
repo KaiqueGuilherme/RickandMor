@@ -1,0 +1,39 @@
+.top{
+    margin-top: 50px;
+    }
+    
+    img{
+    width: 100%;
+    border: 3px solid var(--rick-bg-color-for);
+    }
+    
+    .card{
+        background-color: transparent;
+        width: 100%;
+        border: 3px solid var(--rick-bg-color-for);
+    }
+    
+    h1{
+        font-size: larger;
+        color: var(--primary-color);
+    }
+    hr{
+        color: var(--rick-bg-color-for);
+    }
+    
+    p{
+    color: var(--rick-bg-color-for);
+    }
+    
+    span{
+        color: var(--primary-color);
+    }
+    
+    .btn {
+        background-color: var(--rick-bg-color-for);
+    }
+    
+    .btn:hover {
+        color: var(--primary-color);
+        background-color: var(--rick-bg-color-one);
+    }
