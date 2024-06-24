@@ -1,12 +1,11 @@
 import { Component, OnInit, Output, inject } from '@angular/core';
-import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CharacterServiceService } from '../../../service/Character/character-service.service';
 import { Personagens } from '../../../models/personagem';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PersonagensDetailsComponent } from '../personagens-details/personagens-details.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-personagenslist',
@@ -16,6 +15,8 @@ import { Router } from '@angular/router';
   styleUrl: './personagenslist.component.scss'
 })
 export class PersonagenslistComponent implements OnInit {
+
+
   // Array para armazenar os personagens carregados
   slides: Personagens[] = [];
   
@@ -42,12 +43,16 @@ export class PersonagenslistComponent implements OnInit {
   
   // Injeção do roteador
   router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   constructor() { }
 
   ngOnInit(): void {
-    // Carrega os personagens ao iniciar o componente
-    this.loadCharacters(this.currentPage);
+    //atualiza o parametro page para sua localização
+    this.route.params.subscribe(params => {
+      this.currentPage = +params['page'] || 1;
+      this.loadCharacters(this.currentPage);
+    });
   }
 
   // Carrega os personagens da API com base na página fornecida
@@ -64,10 +69,10 @@ export class PersonagenslistComponent implements OnInit {
     });
   }
 
-  // Seleciona um personagem e navega para a página de detalhes do personagem
+  // Seleciona um personagem e navega para a página de detalhes do personagem e pagina que ele estava
   selectCharacter(character: any) {
     if (character !== null) {
-      this.router.navigate([`/dashboard/personagem/${character.id}`]);
+      this.router.navigate([`/dashboard/personagem/${character.id}/${this.currentPage}`]);
     } else {
       console.log("erro");
     }
@@ -77,7 +82,7 @@ export class PersonagenslistComponent implements OnInit {
   changePage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
-      this.loadCharacters(page);
+      this.router.navigate([`/dashboard/personagens/${page}`]);
     }
   }
 

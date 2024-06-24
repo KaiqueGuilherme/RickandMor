@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LoginService } from '../../../service/login/login.service';
 import { User } from '../../../models/user';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,16 +13,22 @@ import { Router } from '@angular/router';
 export class UserProfileComponent {
 
   profile: User | undefined;
+  private currentPage: number = 1;
+
+  
 
   constructor() {
     // Sempre executar essa função ao carregar a página
     this.loadUser();
+    //recupera o parametro page para carregala novamente
+    this.currentPage = this.route.snapshot.params['page'] || 1;
   }
 
   // Injetando LoginService
   loginService = inject(LoginService);
   // Injetando Router
   router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   // Buscando informações do usuário
   loadUser() {
@@ -40,7 +46,7 @@ export class UserProfileComponent {
 
   // Navega para a página de personagens no dashboard ao sair
   exit() {
-    this.router.navigate(['/dashboard/personagens']);
+    this.router.navigate(['/dashboard/personagens/1']);
   }
 
 }

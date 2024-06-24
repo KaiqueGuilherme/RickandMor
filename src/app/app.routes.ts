@@ -12,8 +12,8 @@ export const routes: Routes = [
     {path:"", redirectTo:"login", pathMatch:"full"},
     {path:"login", component: LoginComponent},
     {path:"dashboard", component: HomeComponent,canActivate: [AuthGuard], children: [
-        {path: "personagens", component: PersonagenslistComponent},
-        {path: "personagem/:idPersonagem", component: PersonagensDetailsComponent},
+        {path: "personagens/:page", component: PersonagenslistComponent},
+        {path: "personagem/:idPersonagem/:page", component: PersonagensDetailsComponent},
         {path: "profile", component: UserProfileComponent},
     ]},
     { path: '**', redirectTo: 'dashboard/personagens', pathMatch: 'full' },

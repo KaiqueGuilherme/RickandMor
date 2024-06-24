@@ -32,7 +32,7 @@ export class LoginComponent {
        // Callback para sucesso na resposta
        if (response.success) {
          // Redireciona para a página principal após o login bem-sucedido
-         this.router.navigate(['/dashboard/personagens']);
+         this.router.navigate(['/dashboard/personagens/1']);
          // Exibe um alerta de sucesso utilizando SweetAlert2
          Swal.fire({
            icon: 'success',
